@@ -1,0 +1,491 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #331801;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+/* Logo & Menu (sama seperti sebelumnya) */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.navbar-logo h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+.navbar-logo img {
+    height: 40px;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 30px;
+}
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+.navbar-menu a:hover {
+    color: #F6572A;
+    
+}
+
+/* Gaya tombol Contact - desktop */
+.navbar-menu .contact-button {
+    background: #F6572A;
+    border: 2px solid #F6572A; 
+    color: #4B2300;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: -10px; 
+}
+
+.navbar-menu .contact-button:hover {
+    background: transparent;
+    border: 2px solid #F6572A;
+    color: white; 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Gaya tombol Contact - sidebar (mobile) */
+.sidebar-menu .contact-button {
+    background: #F6572A;
+    color: #4B2300;
+    padding: 10px 0;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: block;
+    margin: 0 20px;
+}
+
+.sidebar-menu .contact-button:hover {
+    background: transparent;
+    border: 2px solid #F6572A;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hamburger & Sidebar */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 260px;
+    height: 100vh;
+    background: #4B2300;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: left 0.3s;
+    z-index: 1002;
+}
+.sidebar.active {
+    left: 0;
+}
+.close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+.sidebar-menu a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 12px 0;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+    color: #F6572A;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+}
+.overlay.active {
+    display: block;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10rem;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 50px;
+}
+
+.container > h1 {
+    font-size: 50px;
+    margin-bottom: 2rem;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-container.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.input-container > h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.team-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 16px;
+    color: #555;
+}
+
+.input-group input {
+    font-size: 20px;
+    padding: 8px 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    max-width: 200px;
+}
+
+.input-container button {
+    padding: 12px 45px;
+    font-size: 18px;
+    background-color: #434343;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: background 0.2s;
+}
+
+.input-container button:hover {
+    background-color: #505050;
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px; 
+    margin: 25px auto;
+    padding: 0 30px;
+    gap: 40px; 
+}
+
+.score-board > div {
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 330px;
+    border-radius: 5px;
+}
+
+#team1Name, #team2Name {
+    font-size: 50px;
+}
+
+#team1Score, #team2Score {
+    font-size: 100px;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    color: #F6572A;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttons > button {
+    font-size: 25px;
+    padding: 5px;
+    width: 60px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}
+
+.buttons > button:hover {
+    background-color: #505050;
+}
+
+.score-container > button {
+    padding: 5px 45px;
+    font-size: 18px;
+    background-color: #434343;
+    color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.score-container > button:hover {
+    background-color: #505050;
+}
+
+.fouls-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px; 
+    min-width: 95px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.fouls-label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4B2300;
+    margin-bottom: 8px;
+}
+
+#team1Fouls, #team2Fouls {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+}
+
+.fouls-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fouls-buttons button {
+    font-size: 16px;
+    padding: 5px 12px;
+    background-color: #434343;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 5px;
+    cursor: pointer;
+}
+
+.fouls-buttons button:hover {
+    background-color: #505050;
+}
+
+/* Gaya team block (skor utama) */
+.team-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 10px;
+    border-radius: 10px;
+    min-width: 240px;
+    background: white;
+}
+
+.team-block h1 {
+    font-size: 34px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.team-block > div[id$="Score"] {
+    font-size: 84px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.buttons button {
+    font-size: 18px;
+    padding: 6px 12px;
+    min-width: 40px;
+    border: none;
+    background-color: #434343;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.buttons button:hover {
+    background-color: #505050;
+}
+
+.timer-section {
+    margin: 25px 0 35px;
+    text-align: center;
+}
+
+#timer-display {
+    font-size: 10rem;      
+    font-weight: bold;
+    color: #4B2300;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 2px;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.timer-controls button {
+    padding: 10px 18px;
+    font-size: 16px;
+    background-color: #434343;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: background 0.2s;
+}
+
+.timer-controls button:hover {
+    background-color: #505050;
+}
+
+/* Tombol Start Timer lebih menonjol (opsional) */
+#start-timer {
+    background-color: #4B2300; 
+    font-weight: bold;
+}
+
+#start-timer:hover {
+    background-color: #6D3A00;
+}
+
+#reset-timer {
+    background-color: #6c757d;
+}
+
+#reset-timer:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    .navbar-menu {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+}
