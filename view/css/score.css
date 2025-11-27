@@ -280,7 +280,7 @@
 .score-board > div {
     padding: 1.875rem;
     box-shadow: 0 0.1875rem 0.5rem rgba(0, 0, 0, 0.24);
-    width: 20.625rem; 
+    width: 30rem; 
     border-radius: 0.3125rem; 
 }
 
@@ -477,6 +477,54 @@
     background-color: #5a6268;
 }
 
+/* Grid untuk tombol skor (2x2) */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 200px;
+}
+
+.buttons-grid button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: #434343;
+    color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+.buttons-grid button:hover {
+    background-color: #505050;
+}
+
+/* Grid untuk tombol fouls (1 baris, 2 kolom) */
+.fouls-buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 140px;
+}
+
+.fouls-buttons-grid button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: none;
+    background-color: #434343;
+    color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+
+.fouls-buttons-grid button:hover {
+    background-color: #505050;
+}
+
 /* Responsive */
 @media (max-width: 48rem) { 
     .navbar {
@@ -488,4 +536,348 @@
     .hamburger {
         display: flex;
     }
+}
+
+/* ========== RESPONSIVE LAYOUT =========== */
+/* ========== DESKTOP LAYOUT =========== */
+@media (min-width: 769px) {
+    .score-board {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 81.25rem;
+        margin: 1.5625rem auto;
+        padding: 0 1.875rem;
+        gap: 2.5rem;
+    }
+    
+    .team-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        width: 20.625rem; /* 330px */
+        text-align: center;
+    }
+    
+    .team-block h1 {
+        font-size: 2.125rem;
+        margin-bottom: 0.5rem;
+        color: #000;
+    }
+    
+    /* Score & Fouls Row */
+    .score-fouls-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+        flex-wrap: nowrap; /* Pastikan tidak wrap */
+    }
+    
+    .score-box,
+    .fouls-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 80px; /* pastikan tidak menyusut */
+        text-align: center;
+    }
+    
+    /* Skor besar tapi tidak merusak layout */
+    .score-box > div[id$="Score"],
+    .fouls-box > div[id$="Fouls"] {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: bold;
+        color: #F6572A;
+        margin: 0;
+        white-space: nowrap;        /* Jangan wrap ke baris baru */
+        text-align: center;
+        min-width: 60px;            /* Minimal lebar agar tidak terlalu sempit */
+        flex-shrink: 0;             /* Jangan susut saat ruang sempit */
+    }
+    
+    .fouls-box .fouls-label {
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #4B2300;
+    }
+    
+    /* Tombol Skor & Fouls */
+    .buttons-grid,
+    .fouls-buttons-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .buttons-grid button,
+    .fouls-buttons-grid button {
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        background-color: #434343;
+        color: white;
+        box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+    }
+    
+    .buttons-grid button:hover,
+    .fouls-buttons-grid button:hover {
+        background-color: #505050;
+    }
+    
+    /* Tombol Reset */
+    .score-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+        width: 100%;
+    }
+    
+    .score-actions button {
+        padding: 0.75rem 2rem;
+        font-size: 1.125rem;
+        background-color: #434343;
+        color: white;
+        border-radius: 0.375rem;
+        box-shadow: 0 0.1875rem 0.5rem rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+    }
+    
+    .score-actions button:hover {
+        background-color: #505050;
+    }
+}
+
+/* ========== MOBILE LAYOUT =========== */
+@media (max-width: 768px) {
+    
+    .container > h1 {
+        font-size: 2.3rem; 
+        margin-bottom: 0.625rem;
+    }
+    /* Timer */
+    #timer-display {
+        font-size: 6rem;
+        margin-bottom: 1rem;
+    }
+
+    .timer-section {
+        text-align: center;
+    }
+    
+    .timer-controls {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+    
+    .timer-controls button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 0.375rem;
+    }
+    
+    /* Ubah score-board jadi vertikal */
+    .score-board {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    /* Team Block Mobile */
+    .team-block,
+    .fouls-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+    }
+    
+    .team-block h1 {
+        font-size: 2.25rem;
+        margin-bottom: 0.5rem;
+        color: #000;
+    }
+    
+    .team-block > div[id$="Score"] {
+        font-size: 3.25rem;
+        font-weight: bold;
+        color: #F6572A;
+        margin: 0.5rem 0;
+    }
+    
+    /* Score & Fouls Gabung */
+    .team-block .score-fouls-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .team-block .score-box,
+    .team-block .fouls-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+        min-width: 100px;
+    }
+    
+    .team-block .score-box > div[id$="Score"],
+    .team-block .fouls-box > div[id$="Fouls"] {
+        font-size: clamp(1.5rem, 6vw, 2.5rem); /* Menyesuaikan di layar kecil */
+        white-space: nowrap;
+        text-align: center;
+        min-width: 50px;
+        flex-shrink: 0;
+    }
+    
+    .team-block .score-box > div[id$="Score"] {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #F6572A;
+        margin: 0;
+    }
+    
+    .team-block .score-fouls-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        flex-wrap: nowrap; /* ⬅️ Pastikan tidak wrap ke bawah */
+    }
+    
+    .team-block .fouls-box .fouls-label {
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: #4B2300;
+    }
+    
+    .team-block .fouls-box > div[id$="Fouls"] {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #F6572A;
+    }
+    
+    /* Tombol Skor & Fouls */
+    .team-block .buttons-grid,
+    .fouls-block .fouls-buttons-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .team-block .buttons-grid button,
+    .fouls-block .fouls-buttons-grid button {
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        background-color: #434343;
+        color: white;
+        box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+    }
+    
+    .team-block .buttons-grid button:hover,
+    .fouls-block .fouls-buttons-grid button:hover {
+        background-color: #505050;
+    }
+    
+    /* Tombol Reset */
+    .score-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+    
+    .score-actions button {
+        width: 100%;
+        max-width: 300px;
+        padding: 0.75rem;
+        font-size: 1.125rem;
+        background-color: #434343;
+        color: white;
+        border-radius: 0.375rem;
+        box-shadow: 0 0.1875rem 0.5rem rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+    }
+    
+    .score-actions button:hover {
+        background-color: #505050;
+    }
+    
+    #team1Score, #team2Score {
+        font-size: 4rem; 
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 400;
+        color: #F6572A;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+    #timer-display {
+        font-size: 4.5rem;
+    }
+    
+    .team-block,
+    .fouls-block {
+        padding: 1rem;
+        max-width: 280px;
+    }
+    
+    .team-block h1 {
+        font-size: 1.75rem;
+    }
+    
+    .team-block > div[id$="Score"] {
+        font-size: 2.5rem;
+    }
+    
+    .team-block .score-box > div[id$="Score"] {
+        font-size: 2rem;
+    }
+    
+    .team-block .fouls-box > div[id$="Fouls"] {
+        font-size: 1.75rem;
+    }
+    
+    .team-block .buttons-grid button,
+    .fouls-block .fouls-buttons-grid button {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .score-actions button {
+        padding: 0.6rem;
+        font-size: 1rem;
+    }   
 }

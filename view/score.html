@@ -65,66 +65,73 @@
             </div>
             
             <div class="score-container" style="display: none;">
-                <!-- ⏱️ TIMER SECTION -->
+                <!-- Timer -->
                 <div class="timer-section">
                     <div id="timer-display">10:00</div>
                     <div class="timer-controls">
                         <button id="decrease-time">-1 min</button>
                         <button id="start-timer">Start Timer</button>
                         <button id="increase-time">+1 min</button>
-                        <button id="reset-timer">Reset Timer</button> 
+                        <button id="reset-timer">Reset Timer</button>
                     </div>
                 </div>
                 
-                <!-- Skor seperti desain awal -->
+                <!-- Scoreboard Asli (Desktop Layout) -->
                 <div class="score-board">
                     <!-- Fouls Team 1 -->
-                    <div class="fouls-block team-1-fouls">
-                        <div class="fouls-label">Fouls</div>
-                        <div id="team1Fouls">0</div>
-                        <div class="fouls-buttons">
-                            <button onclick="addFoul(-1, 'team1')">-1</button>
-                            <button onclick="addFoul(1, 'team1')">+1</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Team 1 (utama) -->
                     <div class="team-block team-1">
                         <h1 id="team1Name">Team 1</h1>
-                        <div id="team1Score">0</div>
-                        <div class="buttons">
-                            <button onclick="addScore(-1, 'team1')">-1</button>
-                            <button onclick="addScore(1, 'team1')">+1</button>
-                            <button onclick="addScore(2, 'team1')">+2</button>
-                            <button onclick="addScore(3, 'team1')">+3</button>
+                        <div class="score-fouls-row">
+                            <div class="fouls-box">
+                                <div class="fouls-label">Fouls</div>
+                                <div id="team1Fouls">0</div>
+                                <div class="fouls-buttons-grid">
+                                    <button onclick="addFoul(-1, 'team1')">-1</button>
+                                    <button onclick="addFoul(1, 'team1')">+1</button>
+                                </div>
+                            </div>
+                            <div class="score-box">
+                                <div id="team1Score">0</div>
+                                <div class="buttons-grid">
+                                    <button onclick="addScore(-1, 'team1')">-1</button>
+                                    <button onclick="addScore(2, 'team1')">+2</button>
+                                    <button onclick="addScore(1, 'team1')">+1</button>
+                                    <button onclick="addScore(3, 'team1')">+3</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Team 2 (utama) -->
+                    <!-- Team 2 -->
                     <div class="team-block team-2">
                         <h1 id="team2Name">Team 2</h1>
-                        <div id="team2Score">0</div>
-                        <div class="buttons">
-                            <button onclick="addScore(-1, 'team2')">-1</button>
-                            <button onclick="addScore(1, 'team2')">+1</button>
-                            <button onclick="addScore(2, 'team2')">+2</button>
-                            <button onclick="addScore(3, 'team2')">+3</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Fouls Team 2 -->
-                    <div class="fouls-block team-2-fouls">
-                        <div class="fouls-label">Fouls</div>
-                        <div id="team2Fouls">0</div>
-                        <div class="fouls-buttons">
-                            <button onclick="addFoul(-1, 'team2')">-1</button>
-                            <button onclick="addFoul(1, 'team2')">+1</button>
+                        <div class="score-fouls-row">
+                            <div class="score-box">
+                                <div id="team2Score">0</div>
+                                <div class="buttons-grid">
+                                    <button onclick="addScore(-1, 'team2')">-1</button>
+                                    <button onclick="addScore(2, 'team2')">+2</button>
+                                    <button onclick="addScore(1, 'team2')">+1</button>
+                                    <button onclick="addScore(3, 'team2')">+3</button>
+                                </div>
+                            </div>
+                            <div class="fouls-box">
+                                <div class="fouls-label">Fouls</div>
+                                <div id="team2Fouls">0</div>
+                                <div class="fouls-buttons-grid">
+                                    <button onclick="addFoul(-1, 'team2')">-1</button>
+                                    <button onclick="addFoul(1, 'team2')">+1</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <button onclick="resetScore()">Reset Score</button>
-                <button onclick="resetGame()">Reset Game</button>
+                <!-- Tombol Reset - DI LUAR score-board -->
+                <div class="score-actions">
+                    <button onclick="resetScore()">Reset Score</button>
+                    <button onclick="resetGame()">Reset Game</button>
+                </div>
             </div>
         </div>
     </main>
@@ -320,6 +327,8 @@
         function resetScore() {
             document.getElementById('team1Score').textContent = '0';
             document.getElementById('team2Score').textContent = '0';
+            document.getElementById('team1Fouls').textContent = '0';
+            document.getElementById('team2Fouls').textContent = '0';
             saveGameState(); // Simpan perubahan
         }
         
