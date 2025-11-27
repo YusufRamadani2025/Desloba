@@ -154,6 +154,66 @@
         let timerInterval = null;
         let isTimerRunning = false;
         
+        // ===== LOCAL STORAGE KEY =====
+        const STORAGE_KEY = 'desloba_scoreboard_data';
+        
+        // ===== SIMPAN DATA KE LOCAL STORAGE =====
+        function saveGameState() {
+            const data = {
+                team1Name: document.getElementById('team1Name').textContent,
+                team2Name: document.getElementById('team2Name').textContent,
+                team1Score: document.getElementById('team1Score').textContent,
+                team2Score: document.getElementById('team2Score').textContent,
+                team1Fouls: document.getElementById('team1Fouls').textContent,
+                team2Fouls: document.getElementById('team2Fouls').textContent,
+                timeLeft: timeLeft,
+                isTimerRunning: isTimerRunning // ✅ tambahkan ini
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        // ===== MUAT DATA SAAT HALAMAN DIBUKA =====
+        function loadGameState() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    
+                    // Isi nilai
+                    document.getElementById('team1Name').textContent = data.team1Name;
+                    document.getElementById('team2Name').textContent = data.team2Name;
+                    document.getElementById('team1Score').textContent = data.team1Score;
+                    document.getElementById('team2Score').textContent = data.team2Score;
+                    document.getElementById('team1Fouls').textContent = data.team1Fouls;
+                    document.getElementById('team2Fouls').textContent = data.team2Fouls;
+                    
+                    // ✅ Gunakan timeLeft dari localStorage, jangan reset ke 600
+                    timeLeft = data.timeLeft || 600;
+                    isTimerRunning = data.isTimerRunning || false; // opsional
+                    
+                    updateTimerDisplay();
+                    
+                    // Tampilkan scoreboard
+                    document.querySelector('.input-container').style.display = 'none';
+                    document.querySelector('.score-container').style.display = 'block';
+                    
+                    // Jangan jalankan timer otomatis — biarkan user klik "Start Timer"
+                    document.getElementById('start-timer').textContent = isTimerRunning ? "Pause" : "Start Timer";
+                    
+                    return true;
+                } catch (e) {
+                    console.warn("Data localStorage rusak:", e);
+                }
+            }
+            return false;
+        }
+        
+        // ===== HAPUS DATA =====
+        function clearGameState() {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+        
+        // ===== FUNGSI TIMER (tidak berubah) =====
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
             const secs = (seconds % 60).toString().padStart(2, '0');
@@ -212,13 +272,12 @@
         }
         
         function resetTimer() {
-            pauseTimer(); // hentikan jika sedang jalan
+            pauseTimer();
             timeLeft = 10 * 60; // kembali ke 10 menit
             updateTimerDisplay();
             document.getElementById('start-timer').textContent = "Start Timer";
+            saveGameState(); // ✅ simpan perubahan
         }
-        
-        
         
         function toggleTimer() {
             if (isTimerRunning) {
@@ -238,29 +297,30 @@
                 return;
             }
             
-            // Isi nama tim di tampilan skor
             document.getElementById('team1Name').textContent = team1;
             document.getElementById('team2Name').textContent = team2;
-            
-            // Reset skor
             document.getElementById('team1Score').textContent = '0';
             document.getElementById('team2Score').textContent = '0';
+            document.getElementById('team1Fouls').textContent = '0';
+            document.getElementById('team2Fouls').textContent = '0';
             
-            // Sembunyikan form input & tampilkan skor + timer
-            document.querySelector('.input-container').style.display = 'none';
-            document.querySelector('.score-container').style.display = 'block';
-            
-            // Reset timer ke 10:00 (tapi belum jalan)
+            // ✅ Reset timer hanya saat mulai game baru
             timeLeft = 10 * 60;
             isTimerRunning = false;
             updateTimerDisplay();
             document.getElementById('start-timer').textContent = "Start Timer";
-            pauseTimer(); // pastikan berhenti
+            pauseTimer();
+            
+            document.querySelector('.input-container').style.display = 'none';
+            document.querySelector('.score-container').style.display = 'block';
+            
+            saveGameState(); // Simpan dengan timeLeft = 600
         }
         
         function resetScore() {
             document.getElementById('team1Score').textContent = '0';
             document.getElementById('team2Score').textContent = '0';
+            saveGameState(); // Simpan perubahan
         }
         
         function resetGame() {
@@ -289,12 +349,16 @@
             
             // Reset tombol timer
             document.getElementById('start-timer').textContent = "Start Timer";
+            
+            // Hapus data
+            clearGameState();
         }
         
         function addScore(points, team) {
             const elem = document.getElementById(team + 'Score');
             let current = parseInt(elem.textContent) || 0;
             elem.textContent = current + points;
+            saveGameState(); // Simpan setiap perubahan
         }
         
         function addFoul(value, team) {
@@ -303,6 +367,7 @@
             let newValue = current + value;
             if (newValue < 0) newValue = 0;
             elem.textContent = newValue;
+            saveGameState(); // Simpan setiap perubahan
         }
         
         // Event delegation untuk tombol timer
@@ -311,17 +376,28 @@
                 if (isTimerRunning) pauseTimer();
                 timeLeft = Math.max(60, timeLeft - 60);
                 updateTimerDisplay();
+                saveGameState(); // Simpan
             } else if (e.target.id === 'increase-time') {
                 if (isTimerRunning) pauseTimer();
                 timeLeft += 60;
                 updateTimerDisplay();
+                saveGameState(); // Simpan
             } else if (e.target.id === 'start-timer') {
                 toggleTimer();
-            } else if (e.target.id === 'reset-timer') { // ⬅️ BARU
+            } else if (e.target.id === 'reset-timer') {
                 resetTimer();
             }  
         });
         
+        // 👇 MUAT DATA SAAT HALAMAN DIBUKA
+        window.addEventListener('DOMContentLoaded', function() {
+            const hasData = loadGameState();
+            if (!hasData) {
+                // Pastikan form ditampilkan jika tidak ada data
+                document.querySelector('.input-container').style.display = 'flex';
+                document.querySelector('.score-container').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
