@@ -7,10 +7,21 @@
     font-family: Arial, sans-serif;
 }
 
+:root {
+    --gelap: #222222; 
+    --dasar: #FF6D1F; 
+    --primary: #F5E7C6;
+    --text: #FAF3E1;
+}
+
+html {
+    background-color: var(--text);
+}
+
 /* Navbar */
 .navbar {
     width: 100%;
-    background-color: #331801;
+    background-color: var(--gelap);
     padding: 0.9375rem 1.875rem;
     display: flex;
     justify-content: space-between;
@@ -50,14 +61,14 @@
 }
 
 .navbar-menu a:hover {
-    color: #F6572A;
+    color: var(--dasar);
 }
 
 /* Tombol Contact - Desktop */
 .navbar-menu .contact-button {
-    background: #F6572A;
-    border: 0.125rem solid #F6572A;
-    color: #4B2300;
+    background: var(--dasar);
+    border: 0.125rem solid var(--dasar);
+    color: var(--gelap);
     padding: 0.375rem 1rem;
     border-radius: 0.25rem; 
     font-weight: 700;
@@ -69,7 +80,7 @@
 
 .navbar-menu .contact-button:hover {
     background: transparent;
-    border: 0.125rem solid #F6572A;
+    border: 0.125rem solid var(--dasar);
     color: white;
     transform: translateY(-0.0625rem); 
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
@@ -77,8 +88,8 @@
 
 /* Tombol Contact - Sidebar */
 .sidebar-menu .contact-button {
-    background: #F6572A;
-    color: #4B2300;
+    background: var(--dasar);
+    color: var(--gelap);
     padding: 0.625rem 0;
     border-radius: 0.25rem;
     font-weight: 700;
@@ -90,7 +101,7 @@
 
 .sidebar-menu .contact-button:hover {
     background: transparent;
-    border: 0.125rem solid #F6572A;
+    border: 0.125rem solid var(--dasar);
     color: white;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
@@ -115,7 +126,7 @@
     left: -17.5rem; 
     width: 16.25rem; 
     height: 100vh;
-    background: #4B2300;
+    background: var(--gelap);
     padding: 1.25rem; 
     display: flex;
     flex-direction: column;
@@ -156,7 +167,7 @@
 }
 
 .sidebar-menu a:hover {
-    color: #F6572A;
+    color: var(--dasar);
 }
 
 .overlay {
@@ -187,14 +198,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: rgb(255, 255, 255);
-    border-radius: 0.9375rem; 
+    background-color: var(--text);
     padding: 3.125rem; 
 }
 
 .container > h1 {
     font-size: 3.125rem; 
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .input-container {
@@ -204,7 +214,7 @@
     align-items: center;
     gap: 1.25rem; 
     padding: 1.875rem;
-    background-color: white;
+    background-color: var(--gelap);
     border-radius: 0.9375rem;
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -215,7 +225,7 @@
 .input-container > h3 {
     font-size: 1.25rem; 
     margin-bottom: 0.9375rem; 
-    color: #333;
+    color: var(--text);
 }
 
 .team-input {
@@ -235,14 +245,14 @@
 
 .input-group label {
     font-size: 1rem;
-    color: #555;
+    color: var(--text);
 }
 
 .input-group input {
     font-size: 1.25rem; 
     padding: 0.5rem 0.75rem;
     text-align: center;
-    border: 0.0625rem solid #ccc;
+    border: 0.0625rem solid var(--text);
     border-radius: 0.25rem;
     outline: none;
     width: 100%;
@@ -253,7 +263,7 @@
     padding: 0.75rem 2.8125rem; 
     font-size: 1.125rem; 
     background-color: #434343;
-    color: white;
+    color: var(--text);
     border: none;
     border-radius: 0.375rem; 
     cursor: pointer;
@@ -292,7 +302,7 @@
     font-size: 6.25rem; 
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
-    color: #F6572A;
+    color: var(--dasar);
 }
 
 .buttons {
@@ -342,7 +352,7 @@
 .fouls-label {
     font-size: 1.125rem; 
     font-weight: bold;
-    color: #4B2300;
+    color: var(--text);
     margin-bottom: 0.5rem; 
 }
 
@@ -364,7 +374,7 @@
     font-size: 1rem;
     padding: 0.3125rem 0.75rem; 
     background-color: #434343;
-    color: white;
+    color: var(--text);
     border: none;
     border-radius: 0.25rem; 
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.24);
@@ -384,7 +394,7 @@
     box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.24);
     border-radius: 0.625rem;
     min-width: 15rem; 
-    background: white;
+    background: var(--gelap);
 }
 
 .team-block h1 {
@@ -412,7 +422,7 @@
     min-width: 2.5rem; 
     border: none;
     background-color: #434343;
-    color: white;
+    color: var(--text);
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.24);
     cursor: pointer;
     border-radius: 0.25rem;
@@ -431,7 +441,7 @@
 #timer-display {
     font-size: 10rem;
     font-weight: bold;
-    color: #4B2300;
+    color: var(--gelap);
     margin-bottom: 1.25rem; 
     font-family: 'Arial', sans-serif;
     letter-spacing: 0.125rem;
@@ -448,7 +458,7 @@
     padding: 0.625rem 1.125rem;
     font-size: 1rem;
     background-color: #434343;
-    color: white;
+    color: var(--text);
     border: none;
     border-radius: 0.375rem; 
     cursor: pointer;
@@ -461,12 +471,12 @@
 }
 
 #start-timer {
-    background-color: #4B2300;
+    background-color: var(--gelap);
     font-weight: bold;
 }
 
 #start-timer:hover {
-    background-color: #6D3A00;
+    background-color: var(--dasar);
 }
 
 #reset-timer {
@@ -556,7 +566,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: white;
         border-radius: 0.75rem;
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
@@ -567,7 +576,7 @@
     .team-block h1 {
         font-size: 2.125rem;
         margin-bottom: 0.5rem;
-        color: #000;
+        color: var(--text);
     }
     
     /* Score & Fouls Row */
@@ -576,7 +585,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 0.75rem;
+        gap: 3rem;
         margin-top: 0.5rem;
         flex-wrap: nowrap; /* Pastikan tidak wrap */
     }
@@ -596,7 +605,7 @@
     .fouls-box > div[id$="Fouls"] {
         font-size: clamp(1.8rem, 4vw, 2.5rem);
         font-weight: bold;
-        color: #F6572A;
+        color: var(--dasar);
         margin: 0;
         white-space: nowrap;        /* Jangan wrap ke baris baru */
         text-align: center;
@@ -607,7 +616,7 @@
     .fouls-box .fouls-label {
         font-size: 1.125rem;
         font-weight: bold;
-        color: #4B2300;
+        color: var(--text);
     }
     
     /* Tombol Skor & Fouls */
@@ -671,7 +680,7 @@
         font-size: 6rem;
         margin-bottom: 1rem;
     }
-
+    
     .timer-section {
         text-align: center;
     }
@@ -705,7 +714,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: white;
+        background: var(--gelap);
         border-radius: 0.75rem;
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
@@ -717,13 +726,13 @@
     .team-block h1 {
         font-size: 2.25rem;
         margin-bottom: 0.5rem;
-        color: #000;
+        color: var(--text);
     }
     
     .team-block > div[id$="Score"] {
         font-size: 3.25rem;
         font-weight: bold;
-        color: #F6572A;
+        color: var(--dasar);
         margin: 0.5rem 0;
     }
     
@@ -759,7 +768,7 @@
     .team-block .score-box > div[id$="Score"] {
         font-size: 2.5rem;
         font-weight: bold;
-        color: #F6572A;
+        color: var(--dasar);
         margin: 0;
     }
     
@@ -776,13 +785,13 @@
     .team-block .fouls-box .fouls-label {
         font-size: 1.125rem;
         font-weight: bold;
-        color: #4B2300;
+        color: var(--text);
     }
     
     .team-block .fouls-box > div[id$="Fouls"] {
         font-size: 2.25rem;
         font-weight: bold;
-        color: #F6572A;
+        color: var(--dasar);
     }
     
     /* Tombol Skor & Fouls */
@@ -838,7 +847,7 @@
         font-size: 4rem; 
         font-family: "Press Start 2P", system-ui;
         font-weight: 400;
-        color: #F6572A;
+        color: var(--dasar);
     }
 }
 

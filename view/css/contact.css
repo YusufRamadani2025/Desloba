@@ -7,10 +7,17 @@
     font-family: Arial, sans-serif;
 }
 
+:root {
+    --gelap: #222222; 
+    --dasar: #FF6D1F; 
+    --primary: #F5E7C6;
+    --text: #FAF3E1;
+}
+
 /* Navbar */
 .navbar {
     width: 100%;
-    background-color: #331801;
+    background-color: var(--gelap);
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -26,7 +33,7 @@
     gap: 10px;
 }
 .navbar-logo h1 {
-    color: white;
+    color: var(--text);
     font-weight: bold;
     font-size: 24px;
     letter-spacing: 1px;
@@ -40,22 +47,22 @@
     gap: 30px;
 }
 .navbar-menu a {
-    color: white;
+    color: var(--text);
     text-decoration: none;
     font-weight: 700;
     font-size: 18px;
     transition: all 0.3s ease;
 }
 .navbar-menu a:hover {
-    color: #F6572A;
+    color: var(--dasar);
     
 }
 
 /* Gaya tombol Contact - desktop */
 .navbar-menu .contact-button {
-    background: #F6572A;
-    border: 2px solid #F6572A; 
-    color: #4B2300;
+    background: var(--dasar);
+    border: 2px solid var(--dasar); 
+    color: var(--gelap);
     padding: 6px 16px;
     border-radius: 4px;
     font-weight: 700;
@@ -67,16 +74,16 @@
 
 .navbar-menu .contact-button:hover {
     background: transparent;
-    border: 2px solid #F6572A;
-    color: white; 
+    border: 2px solid var(--dasar);
+    color: var(--text); 
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Gaya tombol Contact - sidebar (mobile) */
 .sidebar-menu .contact-button {
-    background: #F6572A;
-    color: #4B2300;
+    background: var(--dasar);
+    color: var(--gelap);
     padding: 10px 0;
     border-radius: 4px;
     font-weight: 700;
@@ -88,8 +95,8 @@
 
 .sidebar-menu .contact-button:hover {
     background: transparent;
-    border: 2px solid #F6572A;
-    color: white;
+    border: 2px solid var(--dasar);
+    color: var(--text);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -102,7 +109,7 @@
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: white;
+    background: var(--text);
     margin: 3px 0;
 }
 
@@ -112,7 +119,7 @@
     left: -280px;
     width: 260px;
     height: 100vh;
-    background: #4B2300;
+    background: var(--gelap);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -127,7 +134,7 @@
     align-self: flex-end;
     background: none;
     border: none;
-    color: white;
+    color: var(--text);
     font-size: 28px;
     cursor: pointer;
 }
@@ -138,7 +145,7 @@
     margin-top: 20px;
 }
 .sidebar-menu a {
-    color: white;
+    color: var(--text);
     text-align: center;
     text-decoration: none;
     font-weight: 700;
@@ -149,7 +156,7 @@
 }
 
 .sidebar-menu a:hover {
-    color: #F6572A;
+    color: var(--dasar);
 }
 
 .overlay {
