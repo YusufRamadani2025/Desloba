@@ -1,124 +1,255 @@
+/* Import Font Keren (Sama kayak Scoreboard) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap');
 
-/* Reset */
+/* Reset & Variables */
+:root {
+    --gelap: #1a1a1a;
+    --abu: #2d2d2d;
+    --dasar: #FF6D1F;     /* Orange Sporty */
+    --text: #FAF3E1;      /* Cream White */
+    --primary: #F5E7C6;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-:root {
-    --gelap: #222222; 
-    --dasar: #FF6D1F; 
-    --primary: #F5E7C6;
-    --text: #FAF3E1;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 html, body {
     height: 100%;
-    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* KUNCI: Biar gak bisa discroll */
+    background-color: var(--gelap);
 }
 
-/* Navbar */
+/* ===========================
+   NAVBAR (FINAL FIX - CLEAN STYLE)
+   =========================== */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--gelap);
+    background-color: var(--gelap); /* Gelap Solid */
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     z-index: 1001;
+    border-bottom: none; /* HAPUS garis bawah */
 }
 
-/* Logo & Menu (sama seperti sebelumnya) */
+/* Padding body biar konten gak ketutupan navbar */
+body {
+    padding-top: 80px;
+}
+
+/* =========================================
+   INTRO SEQUENCE (SPLASH SCREEN)
+   ========================================= */
+
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--gelap); /* Hitam pekat */
+    z-index: 9999; /* Paling atas nutupin semua */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Transisi Tirai Naik (Slide Up) */
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Class tambahan saat animasi selesai (Tirai Naik) */
+#intro-overlay.slide-up {
+    transform: translateY(-100%);
+}
+
+.intro-content {
+    text-align: center;
+    position: relative;
+}
+
+/* Animasi Logo: Zoom In-Out halus */
+.intro-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+    animation: pulseLogo 2s infinite ease-in-out;
+}
+
+/* Animasi Teks: Glitchy / Gaming Font */
+.intro-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    color: var(--dasar);
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    opacity: 0;
+    
+    /* Muncul pelan-pelan dengan delay 0.5 detik */
+    animation: fadeInUp 0.8s ease-out forwards 0.5s;
+}
+
+/* Loading Bar Kecil di bawah */
+.loading-bar {
+    width: 0%;
+    height: 4px;
+    background: var(--dasar);
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--dasar);
+    
+    /* Animasi loading bar jalan */
+    animation: loadProgress 2.5s ease-in-out forwards;
+}
+
+/* =========================================
+   KEYFRAMES (GERAKAN ANIMASI)
+   ========================================= */
+
+/* 1. Logo Berdenyut */
+@keyframes pulseLogo {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(255, 109, 31, 0.2));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 25px rgba(255, 109, 31, 0.6));
+    }
+    100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(255, 109, 31, 0.2));
+    }
+}
+
+/* 2. Teks Muncul dari Bawah */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Loading Bar Jalan */
+@keyframes loadProgress {
+    0% {
+        width: 0%;
+        opacity: 1;
+    }
+    80% {
+        width: 100%;
+        opacity: 1;
+    }
+    100% {
+        width: 100%;
+        opacity: 0; /* Hilang pas selesai */
+    }
+}
+
+/* LOGO (Title Case: "DesLoba") */
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-.navbar-logo h1 {
-    color: var(--text);
-    font-weight: bold;
-    font-size: 24px;
-    letter-spacing: 1px;
-}
-.navbar-logo img {
-    height: 40px;
+    gap: 15px;
 }
 
+.navbar-logo h1 {
+    color: var(--text);
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: none; /* Jangan kapital semua */
+}
+
+.navbar-logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* MENU LINKS (Title Case: "Home", "Sound", "Score", "Contact") */
 .navbar-menu {
     display: flex;
     gap: 30px;
 }
+
 .navbar-menu a {
     color: var(--text);
     text-decoration: none;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
+    text-transform: none; /* Jangan kapital semua */
+    position: relative;
 }
+
+/* Efek Hover (Warna Oranye) */
 .navbar-menu a:hover {
     color: var(--dasar);
-    
 }
 
-/* Gaya tombol Contact - desktop */
+/* KHUSUS LINK CONTACT (Hapus gaya tombol) */
+/* Kita reset biar sama persis kayak link lain */
 .navbar-menu .contact-button {
-    background: var(--dasar);
-    border: 2px solid var(--dasar); 
-    color: #4B2300;
-    padding: 6px 16px;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: -10px; 
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    color: var(--text) !important; /* Warna default putih tulang */
 }
 
+/* Hover Contact sama kayak yang lain */
 .navbar-menu .contact-button:hover {
-    background: transparent;
-    border: 2px solid var(--dasar);
-    color: var(--text); 
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--dasar) !important; /* Jadi oranye pas di-hover */
+    background: none !important;
+    box-shadow: none !important;
 }
 
-/* Gaya tombol Contact - sidebar (mobile) */
-.sidebar-menu .contact-button {
-    background: var(--dasar);
-    color: #4B2300;
-    padding: 10px 0;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-align: center;
-    display: block;
-    margin: 0 20px;
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 900px) {
+    .navbar { padding: 15px 20px; }
+    .navbar-menu { display: none; }
+    .hamburger { display: flex; }
 }
 
-.sidebar-menu .contact-button:hover {
-    background: transparent;
-    border: 2px solid var(--dasar);
-    color: var(--text);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .navbar { display: none !important; }
+    body { padding-top: 0 !important; }
 }
-
-/* Hamburger & Sidebar (sama seperti sebelumnya) */
+/* ===========================
+   HAMBURGER & SIDEBAR
+   =========================== */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    gap: 6px;
 }
 .hamburger span {
-    width: 25px;
+    width: 30px;
     height: 3px;
     background: var(--text);
-    margin: 3px 0;
+    border-radius: 3px;
+    transition: 0.3s;
 }
 
 .sidebar {
@@ -132,39 +263,44 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: left 0.3s;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1002;
+    border-right: 2px solid var(--dasar);
 }
-.sidebar.active {
-    left: 0;
+.sidebar.active { left: 0; }
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end;
 }
 .close-btn {
-    align-self: flex-end;
     background: none;
     border: none;
     color: var(--text);
-    font-size: 28px;
+    font-size: 2rem;
     cursor: pointer;
 }
+.close-btn:hover { color: var(--dasar); }
+
 .sidebar-menu {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 10px;
 }
 .sidebar-menu a {
     color: var(--text);
     text-align: center;
     text-decoration: none;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.2rem;
     padding: 12px 0;
-    display: block;
-    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--abu);
+    transition: 0.3s;
 }
-
 .sidebar-menu a:hover {
     color: var(--dasar);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .overlay {
@@ -174,33 +310,35 @@ html, body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.8);
     z-index: 1001;
+    backdrop-filter: blur(3px);
 }
-.overlay.active {
-    display: block;
-}
+.overlay.active { display: block; }
 
-/* Slider Full Screen */
+/* ===========================
+   SLIDER / HERO SECTION
+   =========================== */
 .slider-container {
-    height: 100vh;
     width: 100%;
-    position: relative;
+    height: calc(100vh - 80px); /* KUNCI: 100% Layar dikurangi tinggi Navbar */
 }
 
+/* Item Slider juga ikut container */
 .slider-item {
-    position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%; /* Ikut induknya (calc tadi) */
+    /* sisa properti lain tetap sama... */
     display: flex;
     align-items: center;
     justify-content: center;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: grayscale(20%);
+    position: relative;
 }
 
+/* Gradient Overlay biar teks kebaca */
 .slider-item::before {
     content: "";
     position: absolute;
@@ -208,78 +346,91 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3);
+    background: linear-gradient(0deg, rgba(26,26,26,1) 0%, rgba(26,26,26,0.6) 50%, rgba(26,26,26,0.3) 100%);
     z-index: 1;
 }
-
 
 .slide-content {
     position: relative;
     z-index: 10;
     color: var(--text);
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     padding: 0 20px;
+    /* Animasi Masuk */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* Animasi Text aktif */
+.swiper-slide-active .slide-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-subtitle {
+    font-family: 'Press Start 2P', monospace; /* Font Gamer */
+    font-size: 1rem;
+    color: var(--dasar);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .slide-title {
-    font-size: 2.5rem;
-    margin: 10px 0;
+    font-size: 3.5rem;
+    margin: 10px 0 30px 0;
+    font-weight: 700;
+    line-height: 1.1;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .slide-button {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 32px;
-    color: var(--text);
-    background: transparent;
-    border: 2px solid var(--text);
+    padding: 15px 40px;
+    color: #fff;
+    background: var(--dasar);
+    border: none;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-align: center;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: all 0.3s ease;
-    position: relative;
-    z-index: 10;
+    box-shadow: 0 4px 15px rgba(255, 109, 31, 0.4);
 }
 
 .slide-button:hover {
-    background: var(--text);
-    color: #4B2300; 
-    transform: translateY(-1px); 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
-    border-color: var(--text); 
+    background: #e05e1a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 109, 31, 0.6);
 }
-/* Gaya pagination bulat */
 
+/* Pagination Swiper */
 .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
     opacity: 1;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
-
 .swiper-pagination-bullet-active {
-    background: var(--text);
+    background: var(--dasar);
+    width: 30px; /* Jadi lonjong pas aktif */
+    border-radius: 6px;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 15px 20px;
-    }
-    .navbar-menu {
-        display: none;
-    }
-    .hamburger {
-        display: flex;
-    }
-    .slide-title {
-        font-size: 1.8rem;
+@media (max-width: 900px) {
+    .navbar-menu { display: none; }
+    .hamburger { display: flex; }
+    
+    .slide-title { font-size: 2.2rem; }
+    .slide-subtitle { font-size: 0.8rem; }
+    
+    .slider-item::before {
+        background: linear-gradient(0deg, rgba(26,26,26,1) 0%, rgba(26,26,26,0.5) 100%);
     }
 }

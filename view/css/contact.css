@@ -1,122 +1,124 @@
+/* =========================================
+   1. IMPORT FONT & BASIC SETUP
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap');
 
-/* Reset */
+:root {
+    --gelap: #1a1a1a;
+    --abu: #2d2d2d;
+    --dasar: #FF6D1F;
+    --text: #FAF3E1;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Rajdhani', sans-serif;
 }
 
-:root {
-    --gelap: #222222; 
-    --dasar: #FF6D1F; 
-    --primary: #F5E7C6;
-    --text: #FAF3E1;
+body {
+    background-color: var(--gelap);
+    color: var(--text);
+    padding-top: 80px; /* Jarak untuk Navbar Fixed */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* Navbar */
+/* =========================================
+   2. NAVBAR (STYLE SAMA DENGAN HOME/SCORE)
+   ========================================= */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     background-color: var(--gelap);
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     z-index: 1001;
 }
 
-/* Logo & Menu (sama seperti sebelumnya) */
+/* LOGO */
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-.navbar-logo h1 {
-    color: var(--text);
-    font-weight: bold;
-    font-size: 24px;
-    letter-spacing: 1px;
-}
-.navbar-logo img {
-    height: 40px;
+    gap: 15px;
 }
 
+.navbar-logo h1 {
+    color: var(--text);
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: none;
+}
+
+.navbar-logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* MENU LINKS */
 .navbar-menu {
     display: flex;
     gap: 30px;
 }
+
 .navbar-menu a {
     color: var(--text);
     text-decoration: none;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
-}
-.navbar-menu a:hover {
-    color: var(--dasar);
-    
+    text-transform: none;
 }
 
-/* Gaya tombol Contact - desktop */
+.navbar-menu a:hover {
+    color: var(--dasar);
+}
+
+/* TOMBOL CONTACT (Style Polos/Clean) */
 .navbar-menu .contact-button {
-    background: var(--dasar);
-    border: 2px solid var(--dasar); 
-    color: var(--gelap);
-    padding: 6px 16px;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: -10px; 
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    color: var(--dasar) !important; /* Warna Oranye karena sedang aktif */
+    font-weight: 700 !important;
 }
 
 .navbar-menu .contact-button:hover {
-    background: transparent;
-    border: 2px solid var(--dasar);
-    color: var(--text); 
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff !important;
 }
 
-/* Gaya tombol Contact - sidebar (mobile) */
-.sidebar-menu .contact-button {
-    background: var(--dasar);
-    color: var(--gelap);
-    padding: 10px 0;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-align: center;
-    display: block;
-    margin: 0 20px;
-}
-
-.sidebar-menu .contact-button:hover {
-    background: transparent;
-    border: 2px solid var(--dasar);
-    color: var(--text);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Hamburger & Sidebar (sama seperti sebelumnya) */
+/* =========================================
+   3. SIDEBAR MOBILE (PERBAIKAN DISINI)
+   ========================================= */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    gap: 6px;
 }
+
 .hamburger span {
-    width: 25px;
+    width: 30px;
     height: 3px;
     background: var(--text);
-    margin: 3px 0;
+    border-radius: 3px;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
-    left: -280px;
+    left: -280px; /* Sembunyi di kiri */
     width: 260px;
     height: 100vh;
     background: var(--gelap);
@@ -124,39 +126,49 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: left 0.3s;
+    transition: left 0.3s ease;
     z-index: 1002;
+    border-right: 2px solid var(--dasar);
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5);
 }
+
+/* Class aktif untuk memunculkan sidebar */
 .sidebar.active {
     left: 0;
 }
-.close-btn {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 28px;
-    cursor: pointer;
-}
+
+/* MENU DI DALAM SIDEBAR (Penting: Flex Column) */
 .sidebar-menu {
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    flex-direction: column; /* Biar turun ke bawah */
+    gap: 15px;
     margin-top: 20px;
 }
+
 .sidebar-menu a {
-    color: var(--text);
-    text-align: center;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 20px;
-    padding: 12px 0;
     display: block;
-    transition: all 0.3s ease;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--abu);
+    text-align: center;
+    transition: 0.3s;
 }
 
 .sidebar-menu a:hover {
     color: var(--dasar);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 2rem;
+    cursor: pointer;
+    align-self: flex-end;
 }
 
 .overlay {
@@ -164,24 +176,358 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1001;
 }
+
 .overlay.active {
     display: block;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 15px 20px;
+/* =========================================
+   4. CONTACT FORM SECTION
+   ========================================= */
+.contact-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-header h1 {
+    font-family: 'Press Start 2P';
+    font-size: 2rem;
+    color: var(--dasar);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.contact-header p {
+    color: #888;
+    margin-bottom: 40px;
+}
+
+.form-box {
+    background: var(--abu);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--dasar);
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+textarea:focus {
+    border-color: var(--dasar);
+    box-shadow: 0 0 10px rgba(255, 109, 31, 0.2);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--dasar);
+    color: #fff;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: #fff;
+    color: var(--dasar);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 109, 31, 0.4);
+}
+
+/* =========================================
+   ANIMASI FLOATING PROFILE
+   ========================================= */
+
+/* 1. Bikin Keyframes (Gerakannya) */
+@keyframes floatGlow {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        border-color: var(--dasar); /* Border Oranye */
     }
+    50% {
+        transform: translateY(-10px); /* Naik ke atas 10px */
+        box-shadow: 0 20px 40px rgba(255, 109, 31, 0.6); /* Glow Oranye makin terang */
+        border-color: #fff; /* Border jadi Putih (bling effect) */
+    }
+    100% {
+        transform: translateY(0); /* Balik ke bawah */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        border-color: var(--dasar);
+    }
+}
+
+/* 2. Update Class Floating Profile */
+.floating-profile {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 900;
+    
+    border: 3px solid var(--dasar);
+    background: #000;
+    overflow: hidden;
+    
+    /* Pasang Animasinya Disini: */
+    /* Nama animasi | Durasi | Tipe gerak | Looping selamanya */
+    animation: floatGlow 3s ease-in-out infinite;
+    
+    transition: all 0.3s ease; /* Transisi buat hover */
+}
+
+.floating-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 3. Efek Hover (Pas kursor nempel) */
+/* Kita matikan animasi naik-turunnya, ganti jadi Zoom biar user fokus klik */
+.floating-profile:hover {
+    animation: none; /* Stop animasi float */
+    transform: scale(1.15) rotate(5deg); /* Zoom & Miring dikit */
+    box-shadow: 0 0 25px var(--dasar); /* Glow solid */
+    border-color: #fff;
+}
+
+/* Tooltip (Tetap sama) */
+.floating-profile::after {
+    content: "Author";
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background: var(--dasar);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+    white-space: nowrap; /* Biar teks gak turun baris */
+}
+
+.floating-profile:hover::after {
+    opacity: 1;
+    bottom: 75px;
+}
+
+/* =========================================
+   6. MODAL BIODATA & DONASI
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.profile-card {
+    background: var(--abu);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    border: 1px solid #444;
+    transform: translateY(50px);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .profile-card {
+    transform: translateY(0);
+}
+
+.profile-img-lg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid var(--dasar);
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.author-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.author-role {
+    color: var(--dasar);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    background: var(--dasar);
+    transform: translateY(-3px);
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.donate-box {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px dashed #555;
+}
+
+.donate-box h4 {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: #fff;
+}
+
+/* =========================================
+   7. TOAST NOTIFICATION
+   ========================================= */
+.toast {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: #2ecc71;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 3000;
+    transform: translateX(200%);
+    transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* =========================================
+   8. RESPONSIVE MEDIA QUERIES
+   ========================================= */
+@media (max-width: 900px) {
+    /* Navbar Desktop hilang, Hamburger muncul */
     .navbar-menu {
         display: none;
     }
+    
     .hamburger {
         display: flex;
+    }
+    
+    .contact-container {
+        padding: 10px;
+        margin-top: 20px;
+    }
+    
+    .form-box {
+        padding: 20px;
     }
 }

@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DesLoba</title>
-    <!-- Swiper CSS -->
+    <title>DesLoba - Sport & Sound</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="icon" type="image/x-icon" href="assets/images/logoDesloba.png">
+    <link rel="icon" type="image/x-icon" href="assets/images/DesLoba-Logo.png">
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-    <!-- Overlay -->
+    
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <img src="assets/images/DesLoba-Logo.png" alt="Logo" class="intro-logo">
+            <h1 class="intro-text">DESLOBA</h1>
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+    
     <div class="overlay" id="overlay"></div>
     
-    <!-- Sidebar -->
-    <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-        <button class="close-btn" id="closeSidebar">&times;</button>
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeSidebar">&times;</button>
+        </div>
         <div class="sidebar-menu">
             <a href="index.html">Home</a>
-            <a href="./view/sound.html">Sound</a>
-            <a href="./view/score.html">Score</a>
-            <a href="./view/contact.html" class="contact-button">Contact</a> 
+            <a href="view/sound.html">Sound</a>
+            <a href="view/score.html">Score</a>
+            <a href="view/contact.html" class="contact-button">Contact</a> 
         </div>
     </aside>
     
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
-            <img src="assets/images/logoDesloba.png" alt="Logo DesLoba" />
+            <img src="assets/images/DesLoba-Logo.png" alt="Logo DesLoba" />
             <h1>DesLoba</h1>
         </div>
+        
         <div class="navbar-menu">
-            <a href="index.html">Home</a>
-            <a href="./view/sound.html">Sound</a>
-            <a href="./view/score.html">Score</a>
-            <a href="./view/contact.html" class="contact-button">Contact</a> 
+            <a href="index.html" style="color: var(--dasar);">Home</a>
+            <a href="view/sound.html">Sound</a>
+            <a href="view/score.html">Score</a>
+            <a href="view/contact.html" class="contact-button">Contact</a> 
         </div>
+        
         <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
@@ -44,39 +52,62 @@
         </div>
     </nav>
     
-    <!-- Slider -->
     <main>
         <div class="swiper slider-container">
             <div class="swiper-wrapper">
-                <!-- Slide 1 -->
-                <div class="swiper-slide slider-item" style="background-image: url('./assets/images/background-1.jpg');">
+                
+                <div class="swiper-slide slider-item" style="background-image: url('assets/images/background-1.jpg');">
                     <div class="slide-content">
-                        <h3 class="slide-subtitle">Grow The Sprit</h3>
-                        <h2 class="slide-title">Game becomes more intense with the addition of Sound Effects.</h2>
-                        <a href="#" class="slide-button">Learn More</a>
+                        <h3 class="slide-subtitle">Grow The Spirit</h3>
+                        <h2 class="slide-title">Level Up Your Game<br>With Intense Sounds</h2>
+                        <a href="view/sound.html" class="slide-button">Explore Sounds</a>
                     </div>
                 </div>
                 
-                <div class="swiper-slide slider-item" style="background-image: url('./assets/images/background-2.jpg');">
+                <div class="swiper-slide slider-item" style="background-image: url('assets/images/background-2.jpg');">
                     <div class="slide-content">
-                        <h3 class="slide-subtitle">Fighting on the field</h3>
-                        <h2 class="slide-title">The hotter The match, The more Excited We are.</h2>
-                        <a href="#" class="slide-button">Learn More</a>
+                        <h3 class="slide-subtitle">Professional Tools</h3>
+                        <h2 class="slide-title">Real-Time Scoreboard<br>For Any Match</h2>
+                        <a href="view/score.html" class="slide-button">Start Scoring</a>
                     </div>
                 </div>
-                <!-- Tambahkan slide lain jika perlu -->
+                
             </div>
             
-            <!-- 🔘 Pagination Bulat -->
             <div class="swiper-pagination"></div>
             
         </div>
     </main>
     
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Sidebar toggle
+        // === INTRO SEQUENCE LOGIC (SESSION BASED) ===
+        window.addEventListener('load', () => {
+            const intro = document.getElementById('intro-overlay');
+            
+            // 1. Cek apakah user sudah pernah nonton intro di sesi ini?
+            if (sessionStorage.getItem('introShown')) {
+                // Kalau SUDAH, langsung sembunyikan intro (jangan diputar)
+                intro.style.display = 'none';
+            } else {
+                // Kalau BELUM, putar animasinya
+                
+                // Set ingatan bahwa user sudah nonton
+                sessionStorage.setItem('introShown', 'true');
+                
+                // Jalankan Timer Animasi
+                setTimeout(() => {
+                    intro.classList.add('slide-up');
+                    
+                    setTimeout(() => {
+                        intro.style.display = 'none';
+                    }, 800); // 800ms sesuai durasi transisi CSS
+                    
+                }, 2500); // Durasi Intro: 2.5 Detik
+            }
+        });
+        
+        // Sidebar Logic (Mobile)
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
         const hamburger = document.getElementById('hamburger');
@@ -94,30 +125,16 @@
             });
         });
         
-        // Swiper
+        // Swiper Logic
         const swiper = new Swiper('.slider-container', {
-            // Efek transisi
-            effect: 'fade', // atau 'slide' jika ingin geser
-            fadeEffect: {
-                crossFade: true
-            },
-            
-            // Otomatis ganti slide
+            effect: 'fade', 
+            fadeEffect: { crossFade: true },
+            speed: 1000,
             autoplay: {
-                delay: 4000,        // 4 detik
-                disableOnInteraction: false, // tetap lanjut meski user interaksi
+                delay: 5000, 
+                disableOnInteraction: false,
             },
-            
-            // Looping (opsional tapi disarankan untuk autoplay)
             loop: true,
-            
-            // Navigasi (jika Anda ingin tombol prev/next)
-            navigation: {
-                nextEl: '#slide-next',
-                prevEl: '#slide-prev',
-            },
-            
-            // Pagination (bulat-bulat di bawah)
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,

@@ -1,41 +1,35 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DesLoba</title>
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="icon" type="image/x-icon" href="../assets/images/logoDesloba.png">
-    <link rel="stylesheet" href="../view/css/sound.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesLoba - Soundboard</title>
+    <link rel="icon" type="image/x-icon" href="../assets/images/DesLoba-Logo.png">
+    <link rel="stylesheet" href="css/sound.css">
 </head>
 <body>
-    <!-- Overlay -->
-    <div class="overlay" id="overlay"></div>
     
-    <!-- Sidebar -->
-    <!-- Sidebar -->
+    <div class="overlay" id="overlay"></div>
     <aside class="sidebar" id="sidebar">
         <button class="close-btn" id="closeSidebar">&times;</button>
         <div class="sidebar-menu">
             <a href="../index.html">Home</a>
-            <a href="../view/sound.html">Sound</a>
-            <a href="../view/score.html">Score</a>
-            <a href="../view/contact.html" class="contact-button">Contact</a> 
+            <a href="sound.html" style="color: var(--dasar);">Sound</a>
+            <a href="score.html">Score</a>
+            <a href="contact.html">Contact</a>
         </div>
     </aside>
     
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-logo">
-            <img src="../assets/images/logoDesloba.png" alt="Logo DesLoba" />
+            <img src="../assets/images/DesLoba-Logo.png" alt="Logo">
             <h1>DesLoba</h1>
         </div>
         <div class="navbar-menu">
             <a href="../index.html">Home</a>
-            <a href="../view/sound.html">Sound</a>
-            <a href="../view/score.html">Score</a>
-            <a href="../view/contact.html" class="contact-button">Contact</a> 
+            <a href="sound.html" style="color: var(--dasar);">Sound</a>
+            <a href="score.html">Score</a>
+            <a href="contact.html" class="contact-button">Contact</a>
         </div>
         <div class="hamburger" id="hamburger">
             <span></span>
@@ -44,31 +38,231 @@
         </div>
     </nav>
     
-    <!-- Slider -->
-    <main>
-        <h1 class="text1">Maaf ya orangnya masi cape. <br> Jadi ini belom ada harap maklum ya.</h1>
+    <main class="main-sound">
+        <div class="page-header">
+            <h1>ARENA SOUND EFFECTS</h1>
+            <p style="color: #888; margin-top: 10px;">Click play to hype up the game!</p>
+        </div>
+        
+        <div class="sound-grid">
+            
+            <div class="sound-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3079/3079106.png" class="sound-icon" alt="Airhorn">
+                <div class="sound-title">Airhorn</div>
+                
+                <div class="controls">
+                    <button class="btn-play" data-src="../assets/sounds/Terompet.mp3">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    
+                    <button class="btn-vol-toggle">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+                    </button>
+                    
+                    <div class="vol-container">
+                        <input type="range" class="vol-slider" min="0" max="1" step="0.1" value="0.8">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sound-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3079/3079106.png" class="sound-icon" alt="Airhorn">
+                <div class="sound-title">Airhorn</div>
+                
+                <div class="controls">
+                    <button class="btn-play" data-src="../assets/sounds/Terompet.mp3">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    
+                    <button class="btn-vol-toggle">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+                    </button>
+                    
+                    <div class="vol-container">
+                        <input type="range" class="vol-slider" min="0" max="1" step="0.1" value="0.8">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sound-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3079/3079106.png" class="sound-icon" alt="Airhorn">
+                <div class="sound-title">Airhorn</div>
+                
+                <div class="controls">
+                    <button class="btn-play" data-src="../assets/sounds/Terompet.mp3">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    
+                    <button class="btn-vol-toggle">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+                    </button>
+                    
+                    <div class="vol-container">
+                        <input type="range" class="vol-slider" min="0" max="1" step="0.1" value="0.8">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sound-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3079/3079106.png" class="sound-icon" alt="Airhorn">
+                <div class="sound-title">Airhorn</div>
+                
+                <div class="controls">
+                    <button class="btn-play" data-src="../assets/sounds/Terompet.mp3">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    
+                    <button class="btn-vol-toggle">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+                    </button>
+                    
+                    <div class="vol-container">
+                        <input type="range" class="vol-slider" min="0" max="1" step="0.1" value="0.8">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sound-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3079/3079106.png" class="sound-icon" alt="Airhorn">
+                <div class="sound-title">Airhorn</div>
+                
+                <div class="controls">
+                    <button class="btn-play" data-src="../assets/sounds/Terompet.mp3">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    
+                    <button class="btn-vol-toggle">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+                    </button>
+                    
+                    <div class="vol-container">
+                        <input type="range" class="vol-slider" min="0" max="1" step="0.1" value="0.8">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sound-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3079/3079106.png" class="sound-icon" alt="Airhorn">
+                <div class="sound-title">Airhorn</div>
+                
+                <div class="controls">
+                    <button class="btn-play" data-src="../assets/sounds/Terompet.mp3">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                    </button>
+                    
+                    <button class="btn-vol-toggle">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path></svg>
+                    </button>
+                    
+                    <div class="vol-container">
+                        <input type="range" class="vol-slider" min="0" max="1" step="0.1" value="0.8">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     </main>
     
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Sidebar toggle
+        // === 1. LOGIC NAVBAR MOBILE ===
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
         const hamburger = document.getElementById('hamburger');
         const closeBtn = document.getElementById('closeSidebar');
         
-        hamburger.addEventListener('click', () => {
-            sidebar.classList.add('active');
-            overlay.classList.add('active');
+        hamburger.addEventListener('click', () => { sidebar.classList.add('active'); overlay.classList.add('active'); });
+        [closeBtn, overlay].forEach(el => el.addEventListener('click', () => {
+            sidebar.classList.remove('active'); overlay.classList.remove('active');
+        }));
+        
+        // === 2. LOGIC SOUND SYSTEM ===
+        let currentAudio = null;
+        let currentBtn = null;
+        
+        document.addEventListener('click', (e) => {
+            
+            // --- A. Handle Tombol Play ---
+            if(e.target.closest('.btn-play')) {
+                const btn = e.target.closest('.btn-play');
+                const src = btn.dataset.src;
+                const card = btn.closest('.sound-card');
+
+                // SVG Icons (Simpan string ini di variabel biar gampang)
+                const iconPlay = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>';
+                const iconStop = '<svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"></path></svg>';
+
+                // Jika sedang main & tombol yg sama diklik -> PAUSE
+                if(currentAudio && currentBtn === btn && !currentAudio.paused) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    btn.innerHTML = iconPlay; // Balikin ke Icon Play
+                    card.classList.remove('playing');
+                    currentAudio = null;
+                    currentBtn = null;
+                    return;
+                }
+
+                // Jika ada audio lain yg nyala -> MATIKAN DULU
+                if(currentAudio) {
+                    currentAudio.pause();
+                    currentBtn.innerHTML = iconPlay; // Balikin tombol lama ke Play
+                    currentBtn.closest('.sound-card').classList.remove('playing');
+                }
+
+                // Mainkan Audio Baru
+                currentAudio = new Audio(src);
+                currentBtn = btn;
+                
+                // Set volume
+                const slider = card.querySelector('.vol-slider');
+                currentAudio.volume = slider.value;
+
+                currentAudio.play().catch(err => console.log('Audio error:', err));
+                
+                btn.innerHTML = iconStop; // Ubah jadi Icon Stop (Kotak)
+                card.classList.add('playing');
+
+                // Event kalau audio selesai
+                currentAudio.onended = () => {
+                    btn.innerHTML = iconPlay; // Balikin ke Icon Play
+                    card.classList.remove('playing');
+                    currentAudio = null;
+                };
+            }
+            
+            // --- B. Handle Tombol Volume (Show/Hide Slider) ---
+            if(e.target.closest('.btn-vol-toggle')) {
+                const toggleBtn = e.target.closest('.btn-vol-toggle');
+                const container = toggleBtn.nextElementSibling; // div.vol-container
+                
+                // Tutup semua slider lain dulu biar rapi
+                document.querySelectorAll('.vol-container').forEach(el => {
+                    if(el !== container) el.classList.remove('show');
+                });
+                
+                // Toggle slider ini
+                container.classList.toggle('show');
+            }
+            
+            // --- C. Tutup Slider kalau klik di luar area controls ---
+            if(!e.target.closest('.controls')) {
+                document.querySelectorAll('.vol-container').forEach(el => {
+                    el.classList.remove('show');
+                });
+            }
         });
         
-        [closeBtn, overlay].forEach(el => {
-            el.addEventListener('click', () => {
-                sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-            });
+        // --- D. Handle Geser Volume Realtime ---
+        document.addEventListener('input', (e) => {
+            if(e.target.classList.contains('vol-slider')) {
+                // Jika audio ini lagi main, update volumenya langsung
+                const card = e.target.closest('.sound-card');
+                if(currentBtn && currentBtn.closest('.sound-card') === card && currentAudio) {
+                    currentAudio.volume = e.target.value;
+                }
+            }
         });
+        
     </script>
 </body>
 </html>

@@ -1,192 +1,322 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap');
 
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
+/* Variables */
 :root {
-    --gelap: #222222; 
-    --dasar: #FF6D1F; 
-    --primary: #F5E7C6;
+    --gelap: #1a1a1a;
+    --abu: #2d2d2d;
+    --dasar: #FF6D1F;
     --text: #FAF3E1;
+    --danger: #e74c3c;
 }
 
-/* Navbar */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Rajdhani', sans-serif; }
+
+body {
+    background-color: var(--gelap);
+    color: var(--text);
+    padding-top: 80px; /* Space buat Navbar Fixed */
+    min-height: 100vh;
+}
+
+/* ===========================
+   NAVBAR (SAMA PERSIS HOME/SCORE)
+   =========================== */
 .navbar {
-    width: 100%;
+    position: fixed;
+    top: 0; left: 0; width: 100%;
     background-color: var(--gelap);
     padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     z-index: 1001;
 }
 
-/* Logo & Menu (sama seperti sebelumnya) */
-.navbar-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.navbar-logo h1 {
-    color: var(--text);
-    font-weight: bold;
-    font-size: 24px;
-    letter-spacing: 1px;
-}
-.navbar-logo img {
-    height: 40px;
-}
+.navbar-logo { display: flex; align-items: center; gap: 15px; }
+.navbar-logo h1 { color: var(--text); font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+.navbar-logo img { height: 45px; width: auto; object-fit: contain; }
 
-.navbar-menu {
-    display: flex;
-    gap: 30px;
-}
+.navbar-menu { display: flex; gap: 30px; }
 .navbar-menu a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 18px;
-    transition: all 0.3s ease;
+    color: var(--text); text-decoration: none; font-weight: 700; font-size: 1.1rem;
+    transition: 0.3s; position: relative;
 }
-.navbar-menu a:hover {
-    color: var(--dasar);
-    
-}
+.navbar-menu a:hover { color: var(--dasar); }
 
-/* Gaya tombol Contact - desktop */
+/* Tombol Contact Clean */
 .navbar-menu .contact-button {
-    background: var(--dasar);
-    border: 2px solid var(--dasar); 
-    color: var(--gelap);
-    padding: 6px 16px;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: -10px; 
+    background: none; border: none; padding: 0; margin: 0;
+    color: var(--text); font-weight: 700;
 }
+.navbar-menu .contact-button:hover { color: var(--dasar); }
 
-.navbar-menu .contact-button:hover {
-    background: transparent;
-    border: 2px solid var(--dasar);
-    color: var(--text); 
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; cursor: pointer; gap: 6px; }
+.hamburger span { width: 30px; height: 3px; background: var(--text); border-radius: 3px; }
 
-/* Gaya tombol Contact - sidebar (mobile) */
-.sidebar-menu .contact-button {
-    background: var(--dasar);
-    color: var(--gelap);
-    padding: 10px 0;
-    border-radius: 4px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-align: center;
-    display: block;
-    margin: 0 20px;
-}
-
-.sidebar-menu .contact-button:hover {
-    background: transparent;
-    border: 2px solid var(--dasar);
-    color: var(--text);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Hamburger & Sidebar (sama seperti sebelumnya) */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--text);
-    margin: 3px 0;
-}
-
+/* Sidebar Mobile */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: -280px;
-    width: 260px;
-    height: 100vh;
-    background: var(--gelap);
+    position: fixed; top: 0; left: -280px; width: 260px; height: 100vh;
+    background: var(--gelap); padding: 20px; display: flex; flex-direction: column; gap: 20px;
+    transition: left 0.3s ease; z-index: 1002; border-right: 2px solid var(--dasar);
+}
+.sidebar.active { left: 0; }
+.sidebar-menu a { color: var(--text); text-decoration: none; font-size: 1.2rem; font-weight: bold; padding: 10px 0; display: block; text-align: center; border-bottom: 1px solid var(--abu); }
+.close-btn { background: none; border: none; color: var(--text); font-size: 2rem; cursor: pointer; align-self: flex-end; }
+.overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1001; }
+.overlay.active { display: block; }
+
+/* ===========================
+   SOUNDBOARD LAYOUT
+   =========================== */
+.main-sound {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    transition: left 0.3s;
-    z-index: 1002;
 }
-.sidebar.active {
-    left: 0;
-}
-.close-btn {
-    align-self: flex-end;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 28px;
-    cursor: pointer;
-}
-.sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
     margin-top: 20px;
 }
-.sidebar-menu a {
-    color: var(--text);
-    text-align: center;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 20px;
-    padding: 12px 0;
-    display: block;
-    transition: all 0.3s ease;
-}
 
-.sidebar-menu a:hover {
+.page-header h1 {
+    font-family: 'Press Start 2P';
+    font-size: 2rem;
     color: var(--dasar);
+    text-shadow: 0 4px 10px rgba(255, 109, 31, 0.3);
+    line-height: 1.5;
 }
 
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    z-index: 1001;
-}
-.overlay.active {
-    display: block;
+/* Grid System */
+.sound-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
 }
 
-.text1 {
+/* Sound Card Style */
+.sound-card {
+    background: var(--abu);
+    border-radius: 12px;
+    padding: 20px;
     text-align: center;
-    margin-top: 25%;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
 }
 
+.sound-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--dasar);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Card Active State (Lagi Play) */
+.sound-card.playing {
+    border-color: var(--success, #2ecc71);
+    background: #1e3a2a; /* Hijau gelap */
+}
+
+.sound-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.3));
+}
+
+.sound-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+    min-height: 40px; /* Biar rapi kalau teks 2 baris */
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* Controls Wrapper */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+/* ===========================
+   CONTROLS (Play, Volume, Slider)
+   =========================== */
+
+/* Wrapper Controls */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Jarak antar tombol agak lega */
+    position: relative;
+    margin-top: 10px;
+}
+
+/* Tombol Play (Lingkaran Modern) */
+.btn-play {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    background: var(--dasar);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255, 109, 31, 0.3);
+}
+
+.btn-play svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor; /* Ikut warna teks */
+    margin-left: 2px; /* Sedikit geser biar pas tengah visualnya */
+}
+
+/* Efek Hover Play */
+.btn-play:hover {
+    background: #fff;
+    color: var(--dasar);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 109, 31, 0.5);
+}
+
+/* Tombol Stop (Kotak) */
+.sound-card.playing .btn-play {
+    background: #e74c3c; /* Merah pas stop */
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+.sound-card.playing .btn-play:hover {
+    background: #c0392b;
+    color: #fff;
+}
+.sound-card.playing .btn-play svg {
+    margin-left: 0; /* Reset posisi ikon stop */
+    width: 20px;
+    height: 20px;
+}
+
+/* Tombol Volume (Icon Only) */
+.btn-vol-toggle {
+    background: rgba(255,255,255,0.1); /* Background tipis */
+    border: none;
+    color: #aaa;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Bulat */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.btn-vol-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.btn-vol-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+/* Container Slider (POP UP) - Lebih Lebar */
+.vol-container {
+    position: absolute;
+    bottom: 75px; /* Lebih tinggi dikit */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    background: #222;
+    padding: 12px 20px; /* Padding lega */
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid #444;
+    
+    /* Lebar slider container */
+    width: 180px; /* LEBIH LEBAR DARI SEBELUMNYA */
+    
+    /* Animasi Hide */
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+}
+
+/* Panah kecil di bawah slider popup */
+.vol-container::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: #222;
+    border-right: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+
+/* Class buat munculin slider */
+.vol-container.show {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    bottom: 80px; /* Efek naik dikit */
+}
+
+/* Styling Input Range (Slidernya) */
+.vol-slider {
+    -webkit-appearance: none;
+    width: 100%; /* Full lebar container */
+    height: 6px;
+    background: #444;
+    border-radius: 3px;
+    outline: none;
+}
+
+.vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; /* Pentol slider lebih gede biar enak disentuh */
+    height: 20px;
+    background: var(--dasar);
+    border: 3px solid #222; /* Ada border biar keren */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.vol-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
 /* Responsive */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 15px 20px;
+@media (max-width: 900px) {
+    .navbar-menu { display: none; }
+    .hamburger { display: flex; }
+    .page-header h1 { font-size: 1.5rem; }
+    
+    /* Grid Mobile */
+    .sound-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 Kolom di HP */
+        gap: 10px;
     }
-    .navbar-menu {
-        display: none;
-    }
-    .hamburger {
-        display: flex;
-    }
+    .sound-card { padding: 10px; }
+    .sound-icon { width: 40px; height: 40px; }
+    .sound-title { font-size: 0.9rem; min-height: 30px; }
+    .btn-play { width: 40px; height: 40px; font-size: 1rem; }
 }
